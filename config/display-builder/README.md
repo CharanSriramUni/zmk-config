@@ -23,5 +23,8 @@ Widgets are intentionally constrained so they can be rendered both in the browse
 - `bleProfiles`
 - `wpmGraph`
 - `label`
+- `image`
+
+Images are stored in the JSON config as data URL assets. The preview thresholds them into a 1-bit bitmap, and the generated C emits packed bitmap bytes plus a small draw loop. The image widget supports `contain`, `cover`, and `stretch` fit modes, plus threshold and invert controls.
 
 React or another frontend framework can be layered on top later, but the durable API should stay as the JSON scene graph.

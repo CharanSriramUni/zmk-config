@@ -58,10 +58,10 @@ const defaultConfig = {
   ]
 };
 
+const assetCache = new Map();
 let config = normalizeConfig(JSON.parse(JSON.stringify(defaultConfig)));
 let selectedId = config.widgets[0].id;
 let outputTab = "c";
-const assetCache = new Map();
 let state = {
   battery: { level: 76, charging: false },
   layer: { name: "Base", index: 0 },
