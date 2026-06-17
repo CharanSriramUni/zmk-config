@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>nice!view Builder</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">nv</div>
+          <div>
+            <h1>nice!view Builder</h1>
+            <p>Design a vertical nice!view status screen.</p>
+          </div>
+        </div>
+
+        <div class="toolbar" aria-label="Add widget">
+          <button data-add="battery" title="Add battery widget">Battery</button>
+          <button data-add="layerText" title="Add layer text widget">Layer</button>
+          <button data-add="bleProfiles" title="Add BLE profile widget">BLE</button>
+          <button data-add="wpmGraph" title="Add WPM graph widget">WPM</button>
+          <button data-add="label" title="Add static label widget">Text</button>
+          <button id="addImage" title="Add bitmap image widget">Image</button>
+        </div>
+        <input id="imageInput" type="file" accept="image/*" hidden />
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Widgets</h2>
+            <button id="resetConfig" class="icon-button" title="Reset design">Reset</button>
+          </div>
+          <div id="widgetList" class="widget-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Selected</h2>
+            <button id="deleteWidget" class="icon-button danger" title="Delete selected widget">Delete</button>
+          </div>
+          <div id="inspector" class="inspector"></div>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <section class="preview-band">
+          <div class="preview-header">
+            <div>
+              <h2>Preview</h2>
+              <p>Monochrome, integer-aligned approximation of the device output.</p>
+            </div>
+            <div class="state-controls">
+              <label>
+                Orientation
+                <select id="orientationState">
+                  <option value="vertical">Vertical</option>
+                  <option value="horizontal">Horizontal</option>
+                </select>
+              </label>
+              <label>
+                Battery
+                <input id="batteryState" type="range" min="0" max="100" value="76" />
+              </label>
+              <label>
+                Layer
+                <select id="layerState">
+                  <option value="Base">Base</option>
+                  <option value="Lower">Lower</option>
+                  <option value="Raise">Raise</option>
+                </select>
+              </label>
+              <label>
+                WPM
+                <input id="wpmState" type="range" min="0" max="140" value="38" />
+              </label>
+            </div>
+          </div>
+
+          <div class="device-stage">
+            <canvas id="preview" width="160" height="68" aria-label="nice!view preview"></canvas>
+          </div>
+        </section>
+
+        <section class="editor-grid">
+          <div class="panel code-panel">
+            <div class="panel-header">
+              <h2>JSON Config</h2>
+              <button id="applyJson" class="icon-button" title="Apply JSON">Apply</button>
+            </div>
+            <textarea id="jsonEditor" spellcheck="false"></textarea>
+            <div id="jsonStatus" class="status-line"></div>
+          </div>
+
+          <div class="panel code-panel">
+            <div class="panel-header">
+              <h2>Generated C</h2>
+              <div class="tab-row" role="tablist" aria-label="Generated files">
+                <button class="tab active" data-output="c">C</button>
+                <button class="tab" data-output="cmake">CMake</button>
+                <button class="tab" data-output="conf">Conf</button>
+              </div>
+            </div>
+            <textarea id="codeOutput" spellcheck="false" readonly></textarea>
+            <div id="codeStatus" class="status-line"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
